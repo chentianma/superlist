@@ -38,6 +38,7 @@ class NewVisitorTest(unittest.TestCase):
         # 待办事项表格中显示了“1.买一台Macbook Pro”
         inputbox.send_keys(Keys.ENTER)
 
+
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(
