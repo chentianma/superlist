@@ -32,7 +32,7 @@ class NewVisitorTest(unittest.TestCase):
         )
 
         # 在文本框里输入“买一台Macbook Pro”
-        inputbox.send_keys('买一台Macbook Pro')
+        inputbox.send_keys('1.买一台Macbook Pro')
 
         # 点击回车确定，页面刷新
         # 待办事项表格中显示了“1.买一台Macbook Pro”
@@ -41,10 +41,7 @@ class NewVisitorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '买一台Macbook Pro' for row in rows),
-            'New item did not appear in table'
-        )
+        self.assertIn('买一台Macbook Pro', [row.text for row in rows])
 
         # 页面中又显示了一个文本框，可以输入其他的待办事项
         # 输入其他待办事项
