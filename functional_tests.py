@@ -8,7 +8,7 @@ import unittest
 class NewVisitorTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
-        self.browser.implicitly_wait(10)
+        self.browser.implicitly_wait(30)
 
     def tearDown(self):
         self.browser.quit()
@@ -38,19 +38,19 @@ class NewVisitorTest(unittest.TestCase):
         )
 
         # 在文本框里输入“买一台Macbook Pro”
-        inputbox.send_keys('1.买一台Macbook Pro')
+        inputbox.send_keys('买一台Macbook Pro')
 
         # 点击回车确定，页面刷新
         # 待办事项表格中显示了“1.买一台Macbook Pro”
         inputbox.send_keys(Keys.ENTER)
-        self.check_for_row_in_list_table('1.买一台Macbook Pro')
+        self.check_for_row_in_list_table('1:买一台Macbook Pro')
 
         inputbox = self.browser.find_element_by_id('id_new_item')
-        inputbox.send_keys('2.一个苹果的故事')
+        inputbox.send_keys('一个苹果的故事')
         inputbox.send_keys(Keys.ENTER)
 
-        self.check_for_row_in_list_table('1.买一台Macbook Pro')
-        self.check_for_row_in_list_table('2.一个苹果的故事')
+        self.check_for_row_in_list_table('1:买一台Macbook Pro')
+        self.check_for_row_in_list_table('2:一个苹果的故事')
 
         # 页面中又显示了一个文本框，可以输入其他的待办事项
         # 输入其他待办事项
