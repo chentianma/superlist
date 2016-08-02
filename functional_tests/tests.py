@@ -1,11 +1,12 @@
 # coding: utf-8
 
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(30)
@@ -23,7 +24,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_start_a_list_and_retrieve_it(self):
 
         # 去看应用首页
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # 检查网页标题内是否有“To-Do”这个词
         self.assertIn('To-Do', self.browser.title)
@@ -57,5 +58,5 @@ class NewVisitorTest(unittest.TestCase):
         # 结束
 
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
