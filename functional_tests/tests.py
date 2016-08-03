@@ -44,6 +44,8 @@ class NewVisitorTest(LiveServerTestCase):
         # 点击回车确定，页面刷新
         # 待办事项表格中显示了“1.买一台Macbook Pro”
         inputbox.send_keys(Keys.ENTER)
+        edith_list_url = self.browser.current_url
+        self.assertRegex(edith_list_url, '/list/.+')
         self.check_for_row_in_list_table('1:买一台Macbook Pro')
 
         inputbox = self.browser.find_element_by_id('id_new_item')
@@ -53,9 +55,15 @@ class NewVisitorTest(LiveServerTestCase):
         self.check_for_row_in_list_table('1:买一台Macbook Pro')
         self.check_for_row_in_list_table('2:一个苹果的故事')
 
-        # 页面中又显示了一个文本框，可以输入其他的待办事项
-        # 输入其他待办事项
-        # 结束
+        # 一个新用户访问了网站
+        # 使用一个新的浏览器会话
+        # 保证之前的用户信息不会从cookie中泄露
+        self.browser.quit()
+        self.browser = webdriver.Firefox()
+
+        # 访问首页
+        # 页面中看不到用户1的清单
+        
 
 
 # if __name__ == '__main__':
