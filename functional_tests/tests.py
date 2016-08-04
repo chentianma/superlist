@@ -63,7 +63,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # 访问首页
         # 页面中看不到用户1的清单
-        
+
 
 
 # if __name__ == '__main__':
